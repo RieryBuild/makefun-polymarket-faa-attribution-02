@@ -22,7 +22,7 @@
 //
 // The short window tracks the market's current regime; the long window
 // stabilises the estimate. The blend of the two beat either alone on the
-// practice. Sigma is floored at max(0.0005, 0.005 * x): most markets are
+// practice. Sigma is floored at max(0.0005, 0.006 * x): most markets are
 // dead-quiet over any 4-hour window (their Q90 is exactly 0), yet they do
 // jump, so a dead market still gets a nonzero spread, and the floor scales
 // with the price level because higher-priced markets move in bigger absolute
@@ -35,8 +35,8 @@
 // numbers below are on the same scale):
 //
 //   house baseline (fixed 0.0025) ............ 0.363589
-//   this entry ............................... 0.280669
-//   (90% coverage 0.895, median error 0.768)
+//   this entry ............................... 0.280554
+//   (90% coverage 0.898, median error 0.768)
 //
 // Deliberately NOT used, each tested and rejected on the practice:
 // drift from the recent trend, anchor smoothing, asymmetric up/down sigmas,
@@ -80,7 +80,7 @@ const Z_Q80 = 1.28155;
 /** Absolute sigma floor: dead-quiet markets still jump. */
 const SIGMA_FLOOR_ABS = 0.0005;
 /** Relative sigma floor: higher-priced markets move in bigger steps. */
-const SIGMA_FLOOR_REL = 0.005;
+const SIGMA_FLOOR_REL = 0.006;
 /** Sigma cap: a safety valve for wild markets. */
 const SIGMA_CAP = 0.05;
 
